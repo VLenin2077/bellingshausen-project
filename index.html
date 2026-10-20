@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bellinsgauzen Square: test it before you build it</title>
+<meta name="description" content="A public proposal to test the future of Bellinsgauzen Square, Vasilyevsky Island, Saint Petersburg, with temporary pavilions.">
+<style>
+:root{--bg:#f6f5f1;--surface:#fff;--ink:#1d1d1b;--muted:#5d5d58;--line:#dcdad2;--green:#2f7d4f;--green-soft:#e3f0e8;--red:#c8274a;--max:1060px}
+@media (prefers-color-scheme:dark){:root{--bg:#161715;--surface:#1f211e;--ink:#eeede8;--muted:#a3a39b;--line:#34362f;--green:#5fbf88;--green-soft:#1d2b23;--red:#ef5a7c}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--green)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px 22px;align-items:center;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+nav b{margin-right:auto;font-size:15px}
+nav a{text-decoration:none;color:var(--muted);font-size:15px}nav a:hover{color:var(--ink)}
+header.hero{padding:80px 0 56px}
+.kicker{color:var(--red);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+h1{font-size:clamp(34px,6vw,62px);line-height:1.08;margin:.3em 0 .4em;letter-spacing:-.02em}
+h2{font-size:clamp(26px,4vw,38px);line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h3{margin:0 0 .3em;font-size:19px}
+.lead{font-size:20px;color:var(--muted);max-width:720px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card p{margin:.3em 0 0;color:var(--muted);font-size:16px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.t-fact{background:var(--green-soft);color:var(--green)}.t-assume{background:#fff1d6;color:#8a5a00}.t-check{background:#fde4ea;color:var(--red)}
+@media (prefers-color-scheme:dark){.t-assume{background:#3a2f12;color:#f0c36a}.t-check{background:#3b1b24}}
+figure{margin:0}figure img,.ph{width:100%;border-radius:12px;display:block;aspect-ratio:16/10;object-fit:cover;background:var(--line)}
+.ph{display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;border:2px dashed var(--muted);color:var(--muted);font-size:14px;background:transparent}
+figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+.stat{font-size:44px;font-weight:800;line-height:1;color:var(--green)}.stat small{display:block;font-size:14px;font-weight:500;color:var(--muted);margin-top:6px}
+.bar{height:14px;border-radius:7px;background:var(--green);margin:6px 0 14px}
+blockquote{margin:0;padding:4px 0 4px 18px;border-left:4px solid var(--red);font-size:18px}
+blockquote cite{display:block;font-size:14px;color:var(--muted);font-style:normal;margin-top:4px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:680px;background:var(--surface);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:15px}
+th{background:var(--green-soft)}tr.pick td{background:color-mix(in srgb,var(--green-soft) 60%,transparent)}
+ul{padding-left:1.2em}li{margin:.3em 0}
+.opts label{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer;background:var(--surface)}
+.opts input{margin-right:8px}
+textarea,input[type=text]{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button,.btn{font:inherit;font-weight:600;background:var(--green);color:#fff;border:0;padding:11px 20px;border-radius:10px;cursor:pointer;text-decoration:none;display:inline-block}
+[data-dark] {}
+.team{font-size:15px;color:var(--muted)}
+footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Bellinsgauzen Square</b>
+<a href="#site">The Site</a><a href="#affected">Who Is Affected?</a><a href="#proposal">Our Proposal</a><a href="#say">Have Your Say</a></div></nav>
+
+<header class="hero"><div class="wrap">
+<div class="kicker">Public proposal · Vasilyevsky Island, Saint Petersburg</div>
+<h1>A square that people cross, but nobody stays in.</h1>
+<p class="lead">Bellinsgauzen Square was planned as a ceremonial sea-front plaza. Today it is a wide, windswept passage between old Vasilyevsky Island and the new reclaimed quarters. Before a hotel is built and the Linear Park is extended, we propose a season of small temporary pavilions that test what the square actually needs. Read the evidence, judge the argument, and tell us where we are wrong.</p>
+<p class="team">Team: [Name] — Site researcher · [Name] — Design strategist · [Name] — Community researcher &amp; Public engagement lead</p>
+<figure style="margin-top:28px"><img src="images/2026.jpg" alt="Bellinsgauzen Square today"><figcaption>The square today, looking towards the Kosmos hotel. [photo credit]</figcaption></figure>
+</div></header>
+
+<!-- ================= THE SITE ================= -->
+<section id="site"><div class="wrap">
+<div class="kicker">1 · The Site · [Name], Site researcher</div>
+<h2>What is there, and what is changing?</h2>
+<p class="lead">The square lies on the edge of the old Soviet ensemble around the Kosmos hotel (formerly Pribaltiyskaya). To the west, the Western High-Speed Diameter (ZSD) separates it from the new reclaimed quarters.</p>
+
+<figure style="margin-top:28px"><img src="images/map-location.jpg" alt="Location map"><figcaption>Map: location of the square between the ZSD and the older housing. [add a screenshot with the site outlined]</figcaption></figure>
+<div class="grid g2" style="margin-top:18px">
+
+<figure><img src="images/1983.jpg" alt="Pribaltiyskaya hotel and the square, 1983"><figcaption>1983: Pribaltiyskaya hotel and the newly built square. [add photo, credit]</figcaption></figure>
+<figure><img src="images/2026.jpg" alt="The square in 2026"><figcaption>2026: the same space today, a paved plateau in front of the Kosmos hotel. [add photo from the field study]</figcaption></figure>
+</div>
+
+<h3 style="margin-top:36px">What we know, what we assume, what we still need to check</h3>
+<div class="grid g3">
+<div class="card"><span class="tag t-fact">Observed</span>
+<ul><li>A large paved plateau with a carousel, kiosks, a tyre-fitting service and seasonal fireworks sales.</li><li>Standing water on the pavement after rain; one small group of mature trees is the only real shelter.</li><li>Two footbridges over the ZSD; people cross the plateau mostly along diagonals.</li><li>Metro stations are outside easy walking distance; the area is served by many bus stops.</li></ul></div>
+<div class="card"><span class="tag t-assume">Our assumption</span>
+<ul><li>The square is the main walking link for tens of thousands of residents of the reclaimed quarters.</li><li>Wind and ZSD noise discourage lingering.</li><li>Small shelters and attractions would make people stay longer, which we can only know by trying.</li></ul></div>
+<div class="card"><span class="tag t-check">To verify</span>
+<ul><li>Land ownership and lease terms of the kiosks and attractions on the plateau.</li><li>Whether the demolition and hotel project is still active, and what its current permit status is.</li><li>Underground utilities and the bearing capacity of the paving.</li><li>Resident numbers and counts of bridge users.</li></ul></div>
+</div>
+
+<h3 style="margin-top:36px">Why reasonable people might disagree</h3>
+<p>Some will say the open plateau is a valuable reserve of space, rare in a dense district, and that it works well enough for walking. Others will see wasted land that could host housing, shops or services. Our own view is that the problem is not a lack of land. The space gives people no reason, and no shelter, to stay, and nobody yet knows which interventions would change that.</p>
+
+<h3 style="margin-top:28px">The change proposed</h3>
+<p>The former “Waterville” aquapark building on the square (Korablestroiteley St. 14, building B) is planned for demolition and replacement by a hotel complex, with the Linear Park to be extended. In 2021 the press reported that a company linked to the PIK group had bought the building and intended to replace it with a hotel of up to 13 floors, possibly in an apart-hotel format (<a href="https://abnews.ru/2021/3/26/gostinichnyj-kompleks-poyavitsya-na-meste-peterburgskogo-parka-votervil">AB News, 26 March 2021</a>). We have not confirmed the current status of the project, so this must be checked before the site is presented as “decided”.</p>
+<p>What the plan does not say is what the rest of the square will be for in the meantime, or afterwards. That is the question we examine.</p>
+</div></section>
+
+<!-- ================= WHO IS AFFECTED ================= -->
+<section id="affected"><div class="wrap">
+<div class="kicker">2 · Who Is Affected? · [Name], Community researcher &amp; Public engagement lead</div>
+<h2>People who cross the square every day</h2>
+<p class="lead">Our field study was small. Treat the numbers as a first impression, not as proof.</p>
+
+<div class="grid g2" style="margin-top:28px">
+<div class="card">
+<h3>Pedestrians counted on 10 October 2026</h3>
+<p>Two 20-minute counts at the same spot.</p>
+<div style="margin-top:14px">Morning, 11:30–11:50 · <b>21</b> people<div class="bar" style="width:57%"></div>
+Evening, 19:30–19:50 · <b>37</b> people<div class="bar" style="width:100%"></div></div>
+<p>Evening group: 13 men, 15 women, 1 child, 3 aged 65+, 2 prams, 3 on scooters or bikes. Only one child was seen in the evening count, and one in the morning. The evening count was in rain, so the flow may be higher or lower on a dry day.</p>
+</div>
+<div class="card">
+<h3>Quality of public space (Gehl’s 12 criteria)</h3>
+<div class="stat">+0.5 <small>out of a possible +2.0 · protection, comfort, enjoyment</small></div>
+<p>Good: traffic safety (+2), walking (+2), scale (+2). Poor: sensory discomfort (−2), talking (−2), standing (−1).</p>
+</div>
+</div>
+
+<h3 style="margin-top:36px">Who uses the square</h3>
+<div class="grid g3">
+<div class="card"><h3>Commuters from the reclaimed quarters</h3><p>Specialists aged about 25–35 who walk through on the way to stops. One described the square as a “grey pipe”. They would gain most from shelter and a pleasant route, and lose most from a longer detour.</p></div>
+<div class="card"><h3>Older residents</h3><p>One interviewee (65+) said nothing bothers them, that it is wide and good, and that nothing should be changed. We cannot say how widely this is shared; they may value the open space and fear change.</p></div>
+<div class="card"><h3>Small businesses on the plateau</h3><p>Tyre fitting, seasonal fireworks, attractions and kiosks. We have not spoken to them. Any plan affects their income and must offer a fair alternative.</p></div>
+</div>
+
+<blockquote style="margin-top:32px">“Nothing bothers me, it is wide, it is fine… don’t change anything.”<cite>Interview, resident aged 65+ (paraphrased from our field notes)</cite></blockquote>
+
+<h3 style="margin-top:32px">Questions we cannot answer yet</h3>
+<ul>
+<li>Would families with children use a green square, or do they go to other parks? (Almost no children were observed.)</li>
+<li>How many residents of the reclaimed quarters use the square every day, and would they walk further for a better route?</li>
+<li>Do the tenants of the plateau have leases that outlast any project, and what would they accept as relocation?</li>
+<li>Do residents of the old housing want more activity under their windows?</li>
+</ul>
+</div></section>
+
+<!-- ================= PROPOSAL ================= -->
+<section id="proposal"><div class="wrap">
+<div class="kicker">3 · Our Proposal · [Name], Design strategist</div>
+<h2>Test the square with small temporary pavilions</h2>
+<p class="lead">Instead of guessing, we propose a temporary programme of small installations on the square, inspired by the Concéntrico festival of architecture and design in Logroño, Spain, where installations are placed in the city’s existing squares. Ours would be much smaller. Each object is a question, and the answers shape the permanent design.</p>
+
+<h3 style="margin-top:32px">Options we compared</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Option</th><th>Could gain</th><th>Could lose</th><th>Depends on</th></tr></thead>
+<tbody>
+<tr><td><b>A. Keep as is</b></td><td>No cost, no disruption.</td><td>Wind, puddles and emptiness remain; the square stays a passage.</td><td>Nothing changes unless someone acts.</td></tr>
+<tr><td><b>B. Demolish and build</b><br>hotel complex, Linear Park extended</td><td>A new use for a derelict building; more green space; investment.</td><td>The open space around it, and any chance to learn what residents want first.</td><td>Permits, developer’s plans, design of the public space around the hotel.</td></tr>
+<tr class="pick"><td><b>C. Pavilion pilot</b> (recommended)<br>temporary installations, then decide</td><td>Real evidence of what people use; shelter and life on the square now; a better brief for B.</td><td>Some of the plateau’s open space during the pilot; needs a small budget and permission.</td><td>Landowner and city consent, maintenance, safety, and a clear end date.</td></tr>
+</tbody></table></div>
+<p>C does not exclude B. It could run before construction begins and shape how the public space around the new building is designed.</p>
+
+<h3 style="margin-top:36px">What the pavilions could test</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Type of object (idea)</th><th>Question it tests</th><th>How we would measure it</th></tr></thead>
+<tbody>
+<tr><td><b>Attractor</b> pavilions: something to see, do or eat</td><td>Will a reason to stop make people stay?</td><td>Number of people stopping and how long, compared with the 10 October counts.</td></tr>
+<tr><td><b>Wind shelters</b></td><td>Does protection from wind make the plateau usable?</td><td>Use of seating and standing areas on windy and calm days; short interviews.</td></tr>
+<tr><td><b>Rain cover</b></td><td>Do people use the square when it rains, as the evening count suggests they pass through then?</td><td>Counts in dry and wet weather at the same time of day.</td></tr>
+<tr><td><b>Places to meet</b>: seating, tables, informal stage</td><td>Is there demand for social activity, which is almost absent today?</td><td>Repeat the Gehl assessment and count groups of two or more.</td></tr>
+</tbody></table></div>
+
+<figure style="margin-top:32px"><img src="images/final-project.jpg" alt="Final project"><figcaption>[Name of the pavilion / project]. [add photo and a short description]</figcaption></figure>
+
+<h3 style="margin-top:32px">Conditions and risks</h3>
+<p>The pilot may well show what the square needs, <em>provided that</em> the objects are visible from the main crossing lines and there is a way to count and ask people. It is unlikely to change habits for the residents of the reclaimed quarters unless it stays long enough to become familiar, ideally a full season. Temporary pavilions can also be vandalised or ignored, and need someone responsible for them. We would change our recommendation if the landowner will not allow the pilot, or if the building works make the plateau unusable.</p>
+</div></section>
+
+<!-- ================= HAVE YOUR SAY ================= -->
+<section id="say"><div class="wrap">
+<div class="kicker">4 · Have Your Say · [Name], Community researcher &amp; Public engagement lead</div>
+<h2>Challenge the proposal</h2>
+<p class="lead">We want to hear from people who use the square, and especially from those who disagree.</p>
+
+<div class="grid g2" style="margin-top:28px">
+<div class="card">
+<h3>Quick poll</h3>
+<p>Which future would you choose?</p>
+<div class="opts" id="opts">
+<label><input type="radio" name="v" value="A">A. Keep it as it is</label>
+<label><input type="radio" name="v" value="B">B. Demolish the aquapark and build a hotel</label>
+<label><input type="radio" name="v" value="C">C. Temporary pavilions first, then decide</label>
+</div>
+<button id="vote" type="button">Vote</button>
+<p id="result" role="status"></p>
+<p style="font-size:13px">This poll runs only in your browser and is not shared, so it is not evidence. Real results come from our on-site survey below.</p>
+</div>
+<div class="card">
+<h3>Tell us what we missed</h3>
+<p>Your comment opens in your email app, addressed to the team.</p>
+<p><input type="text" id="who" placeholder="You are: resident / commuter / business / other"></p>
+<p><textarea id="msg" rows="5" placeholder="What would you change, and why?"></textarea></p>
+<a class="btn" id="send" href="#say">Send by email</a>
+</div>
+</div>
+
+<h3 style="margin-top:36px">Our consultation plan</h3>
+<div class="grid g3">
+<div class="card"><h3>1 · On-site survey</h3><p>Short interviews at the bridges and bus stops at morning, evening and weekend times, to reach people who cross but never stop. Repeat our counts at the same times.</p></div>
+<div class="card"><h3>2 · Talk to the tenants</h3><p>Meet the owners of the kiosks, tyre service and attractions before any design is fixed.</p></div>
+<div class="card"><h3>3 · Test on site</h3><p>Put the first pavilion or a full-size mock-up on the plateau with a comment board, and report back what we changed and why.</p></div>
+</div>
+
+<h3 style="margin-top:32px">What would change our minds</h3>
+<ul>
+<li>Counts that show people already stay on the square when weather allows.</li>
+<li>A refusal from the landowner or the city that makes any pilot impossible.</li>
+<li>A clear majority of nearby residents preferring the hotel plan or leaving the square unchanged.</li>
+</ul>
+</div></section>
+
+<footer><div class="wrap">
+<p><b>Sources and credits.</b> Field study, counts and interviews by the team, 10 October 2026. Historic photos and maps: [add source and date for each]. Concéntrico: international architecture and design festival in Logroño, Spain, concentrico.es. Gehl’s 12 quality criteria: Jan Gehl, <em>Cities for People</em>. Student project; not an official proposal.</p>
+</div></footer>
+
+<script>
+// Images: if a file is missing, show a labelled placeholder instead of a broken picture
+document.querySelectorAll('figure img').forEach(function(img){
+  img.addEventListener('error',function(){
+    var d=document.createElement('div');d.className='ph';
+    d.textContent='Add image: '+img.getAttribute('src');
+    img.replaceWith(d);
+  });
+});
+// Poll (per-visitor, stored in this browser only)
+var res=document.getElementById('result');
+function load(){try{return JSON.parse(localStorage.getItem('bell-poll'))||{A:0,B:0,C:0}}catch(e){return {A:0,B:0,C:0}}}
+document.getElementById('vote').onclick=function(){
+  var c=document.querySelector('input[name=v]:checked');
+  if(!c){res.textContent='Please choose an option.';return}
+  var t=load();t[c.value]++;
+  try{localStorage.setItem('bell-poll',JSON.stringify(t))}catch(e){}
+  res.textContent='Thank you. Votes in this browser: A '+t.A+', B '+t.B+', C '+t.C+'.';
+};
+// Email feedback: replace the address below
+var EMAIL='your-team@example.com';
+document.getElementById('send').addEventListener('click',function(e){
+  var s=encodeURIComponent('Bellinsgauzen Square: feedback');
+  var b=encodeURIComponent('I am: '+document.getElementById('who').value+'\n\n'+document.getElementById('msg').value);
+  this.href='mailto:'+EMAIL+'?subject='+s+'&body='+b;
+});
+</script>
+</body>
+</html>
